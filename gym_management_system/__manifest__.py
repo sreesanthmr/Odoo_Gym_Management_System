@@ -1,0 +1,48 @@
+# -*- encoding: utf-8 -*-
+
+
+{
+    "name": "Gym Management System",
+    "version": "18.0.0.0",
+    "summary": "This module is used for managing memberships, staffs, equipments, etc. of a Gym",
+    "description": """This module is used for managing memberships, staffs, equipments, etc. of a Gym""",
+    "category": "project",
+    "author": "Sreesanth M R",
+    "website": "",
+    "depends": [
+        "account",
+        "hr",
+        "project",
+        "product",
+        "membership",
+        "project_hr_skills",
+        "report_xlsx",
+    ],
+    "data": [
+        "security/security.xml",
+        "security/ir_rules.xml",
+        "security/ir.model.access.csv",
+        "data/membership_sequence.xml",
+        "data/membership_expire_scheduler.xml",
+        "data/expire_email_template.xml",
+        "reports/membership_details_report.xml",
+        "reports/reports.xml",
+        "wizards/renew_membership_wizard.xml",
+        "views/account_move_views.xml",
+        "views/hr_employee_views.xml",
+        "views/product_template_views.xml",
+        "views/gym_membership_views.xml",
+        "views/res_partner_views.xml",
+        "views/project_project_views.xml",
+        "views/project_task_views.xml",
+        "views/body_measurements_views.xml",
+        "views/menu.xml",
+        
+    ],
+    "assets": {},
+    "test": [],
+    "demo": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
+}

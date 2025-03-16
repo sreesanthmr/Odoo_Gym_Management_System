@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!-- form view -->
+        <record id="project_task_view_form_inherit_gym" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//sheet/div[@name='button_box']/button[4]" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+
+                <xpath expr="//label[@for='project_id']" position="attributes">
+                    <attribute name='string'>Workout Plan</attribute>
+                </xpath>
+
+                <xpath expr="//group/group/div/field[@name='project_id']" position="attributes">
+                    <attribute name='domain'>[('is_gym_workout_plan','=',True)]</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="member_ids" widget="many2many_avatar_user" />
+                </xpath>
+                <xpath expr="//field[@name='member_ids']" position="after">
+                    <field name="is_gym_workout_schedule" />
+                </xpath>
+                <!-- <xpath expr="//sheet/group/group[1]/field[@name='user_ids']" position="attributes">
+                    <attribute name="domain">[('is_gym_member','=','True')]</attribute>
+                </xpath> -->
+                <xpath expr="//sheet/group/group[1]/field[@name='user_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field[@name='child_ids']/list" position="attributes">
+                    <attribute name="open_form_view">False</attribute>
+                </xpath>
+                
+                <xpath expr="//sheet/group/group[1]/field[@name='milestone_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group[1]/field[@name='tag_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='personal_stage_type_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[2]/h1/div[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[2]/h1/div[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[3]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[4]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='id']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='project_id']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='milestone_id']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='partner_id']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='user_ids']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='date_deadline']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='activity_ids']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='my_activity_date_deadline']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='tag_ids']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='stage_id']" position="attributes">
+                    <attribute name="column_invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']" position="attributes">
+                    <attribute name="string">Workouts</attribute>
+                </xpath>
+
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='name']" position="attributes">
+                    <attribute name="string">Workout Name</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='sub_tasks_page']/field/list/field[@name='name']" position="after">
+                    <field name="no_of_reps"/>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- kanban -->
+        <record id="project_task_view_kanban_inherit_gym" model="ir.ui.view">
+            <field name="name">project.task.kanban.inherit.gym</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+
+                <!-- <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//progressbar[@field='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath> -->
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="on_create"></attribute>
+                </xpath>
+                <xpath expr="//templates/t[2]/main/footer/div[1]/field[@name='priority']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//templates/t[2]/main/footer/div[1]/field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//templates/t[2]/main/footer/div[2]/field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <!-- kanban quick create -->
+        <record id="project_quick_create_task_form_inherit_gym" model="ir.ui.view">
+            <field name="name">project.task.form.quick_create.inherit.gym</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.quick_create_task_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- changed default group by stages in kanban -->
+        <record id="project.view_task_kanban_inherit_my_task" model="ir.ui.view">
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="default_group_by">stage_id</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- changed default group by stages in list -->
+        <record id="project.open_view_my_tasks_list_view" model="ir.ui.view">
+            <field name="arch" type="xml">
+                <list position="attributes">
+                    <attribute name="default_group_by">stage_id</attribute>
+                </list>
+            </field>
+        </record>
+
+
+        <record id="project.action_view_my_task" model="ir.actions.act_window">
+            <field name="name">My Workout Schedules</field>
+            <field name="domain">[('is_gym_workout_schedule','=',True)]</field>
+        </record>
+
+
+        <record id="action_view_all_workout_programs" model="ir.actions.act_window">
+            <field name="name">All Workout Schedules</field>
+            <field name="res_model">project.task</field>
+            <field name="domain">[('is_gym_workout_schedule','=',True)]</field>
+            <field name="context">{'group_by': 'stage_id'}</field>
+            <field name="view_mode">kanban,list,form,calendar,pivot,graph,activity</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No workout schedules found. Let's create one!
+                </p>
+                <p>
+                    Organize your workout schedules by dispatching them across the pipeline.<br/>
+                    Collaborate efficiently by chatting in real-time or via email.
+                </p>
+            </field>
+        </record>
+
+        <record id="project.act_project_project_2_project_task_all" model="ir.actions.act_window">
+            <field name="context">{
+                'default_group_by': False,
+                'active_model': 'project.project',
+                'default_project_id': active_id,
+                'show_project_update': True,
+                'search_default_open_tasks': 1,
+            }</field>
+        </record>
+
+    </data>
+
+
+</odoo>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!--form view-->
+        <record id="hr_employee_view_form_inherit_gym" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='coach_id']" position="after">
+                    <field name="is_gym_trainer"/>
+                </xpath>
+                <xpath expr="//field[@name='is_gym_trainer']" position="after">
+                    <field name="assigned_member_ids" widget="many2many_tags" readonly="1" />
+                </xpath>
+                <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                    <button name="assigned_members" type="object" class="oe_stat_button" icon="fa-users" invisible="id == False">
+                        <field name="assigned_member_count" widget="statinfo" string="Assigned Members"/>
+                    </button>
+                </xpath>  
+
+                <xpath expr="//header/button" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='mobile_phone']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='category_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//sheet/group/group[1]/field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='coach_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//page[@name='personal_information']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <!-- <xpath expr="//page[@name='hr_settings']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath> -->
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="hr_employee_view_form_resume_inherit_gym" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit.resume</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_skills.hr_employee_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page/div/div[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="hr_employee_view_form_org_chart_inherit_gym" model="ir.ui.view">
+            <field name="name">hr.employee.view.form.inherit.org_chart</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_org_chart.hr_employee_view_form_inherit_org_chart"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='o_employee_right']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="change_is_gym_trainer" model="ir.actions.server">
+            <field name="name">Change to false</field>
+            <field name="model_id" ref="model_hr_employee" />
+            <field name="binding_model_id" ref="model_hr_employee" />
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                	action = records.change_is_gym_trainer()
+            </field>
+        </record>
+
+        <record id="hr.open_view_employee_list" model="ir.actions.act_window">
+            <field name="name">Gym Trainers</field>
+            <field name="domain">[('is_gym_trainer','=',True)]</field>
+            <field name="view_mode">kanban,list,form</field>
+        </record>
+
+        <record id="hr_employee_view_form_contact_inherit_gym" model="ir.ui.view">
+            <field name="name">view.employee.form.smartbutton.inherited</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form_smartbutton_inherited"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_related_contacts']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+
+
+</odoo>
+
+
+
+

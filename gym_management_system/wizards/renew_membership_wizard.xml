@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="renew_membership_wizard_view_form" model="ir.ui.view">
+        <field name="name">renew.membership.wizard.view.form</field>
+        <field name="model">renew.membership.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Renew Membership">
+                <group>
+                    <group>
+                        <field name="membership_plan_id" domain="[('membership','=',True)]" options="{'no_create_edit':True, 'no_create': True}" />
+                    </group>
+                    <group>
+                        <label for="membership_date_from" string="Membership Duration"/>
+                        <div class="o_row">
+                            <field name="membership_date_from" /> -
+                            <field name="membership_date_to" />
+                        </div>
+                        <field name="membership_fees" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="submit_membership" type="object" string="Submit" class="oe_highlight" />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_renew_membership_wizard" model="ir.actions.act_window">
+        <field name="name">Renew Membership</field>
+        <field name="res_model">renew.membership.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="renew_membership_wizard_view_form" />
+        <field name="target">new</field>
+    </record>
+
+</odoo>

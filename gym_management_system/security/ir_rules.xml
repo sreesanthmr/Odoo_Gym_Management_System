@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <record id="record_rule_member_access_res_partner" model="ir.rule">
+	    <field name="name">Member Details</field>
+	    <field name="model_id" ref="base.model_res_partner"/> 
+	    <field name="groups" eval="[(4, ref('group_gym_member'))]"/>
+	    <field name="domain_force">[('user_id', '=', user.id)]</field>
+		<field name="perm_read" eval="1" />
+	    <field name="perm_create" eval="0" />
+		<field name="perm_write" eval="0" />
+		<field name="perm_unlink" eval="0" />
+    </record> -->
+
+    <!-- <record id="record_rule_member_access_res_partner" model="ir.rule">
+	    <field name="name">Member Details</field>
+	    <field name="model_id" ref="base.model_res_users"/> 
+	    <field name="groups" eval="[(4, ref('group_gym_member'))]"/>
+	    <field name="domain_force">[('partner_id.user_id', '=', user.id)]</field>
+	    <field name="perm_create" eval="0" />
+		<field name="perm_write" eval="0" />
+		<field name="perm_unlink" eval="0" />
+		<field name="perm_read" eval="1" />
+    </record> -->
+
+    <record id="record_rule_trainer_access_hr_employee" model="ir.rule">
+	    <field name="name">Trainer Details</field>
+	    <field name="model_id" ref="hr.model_hr_employee"/> 
+	    <field name="groups" eval="[(4, ref('group_gym_trainer'))]"/>
+	    <field name="domain_force">[('user_id', '=', user.id)]</field>
+    </record>
+
+	
+
+</odoo>

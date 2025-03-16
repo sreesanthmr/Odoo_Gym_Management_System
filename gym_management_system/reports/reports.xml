@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--qweb report-->
+    <record id="membership_details_qweb_report" model="ir.actions.report">
+        <field name="name">Membership Details Report Qweb</field>
+        <field name="model">gym.membership</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">gym_management_system.membership_details_report</field>
+        <field name="report_file">gym_management_system.membership_details_report</field>
+		<field name="binding_model_id" ref="model_gym_membership"/>
+    </record>
+    
+    <!-- XLSX report-->
+    <record id="body_measurements_xlsx_report" model="ir.actions.report">
+        <field name="name">Body Measurements Report Xlsx</field>
+        <field name="model">body.measurements</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">gym_management_system.body_measurements_xlsx_report</field>
+        <field name="report_file">gym_management_system.body_measurements_xlsx_report</field>
+        <field name="binding_model_id" ref="model_body_measurements"/>
+        <field name="binding_type">report</field>
+    </record>
+   
+</odoo>

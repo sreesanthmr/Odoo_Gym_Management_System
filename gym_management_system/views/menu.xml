@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="gym_menu_root" name="Gym" sequence="1" />
+
+    <menuitem id="menu_members" name="Members" action="base.action_partner_form" parent="gym_management_system.gym_menu_root" sequence="1"/>
+    <menuitem id="menu_trainers" name="Trainers" action="hr.open_view_employee_list" parent="gym_management_system.gym_menu_root" sequence="2" groups='gym_management_system.group_gym_trainer,gym_management_system.group_gym_manager' />
+
+    <menuitem id="membership_menu_root" name="Membership" parent="gym_management_system.gym_menu_root" sequence="3"/>
+    <menuitem id="menu_memberships" name="Membership" action="gym_management_system.action_gym_membership" parent="membership_menu_root" sequence="1"/>
+    <menuitem id="menu_membership_plans" name="Membership Plans" action="gym_management_system.action_gym_membership_products" parent="membership_menu_root" sequence="2"/>
+
+    <menuitem id="workout_plans_menu_root" name="Workout" parent="gym_management_system.gym_menu_root" sequence="4"/>
+    <menuitem id="menu_workout_plans" name="Workout Plans" action="gym_management_system.action_workout_plans" parent="workout_plans_menu_root" sequence="1"/>
+    <menuitem id="menu_my_workout_schedules" name="My Workout Schedules" action="project.action_view_my_task" parent="workout_plans_menu_root" sequence="2"/>
+    <menuitem id="menu_all_workout_schedules" name="All Workout Schedules" action="gym_management_system.action_view_all_workout_programs" parent="workout_plans_menu_root" sequence="3"/>
+
+    <menuitem id="menu_member_invoices" name="Invoices" action="gym_management_system.action_move_out_gym_member_invoice" parent="gym_management_system.gym_menu_root" sequence="6"/>
+
+    <menuitem id="menu_body_measurements" name="Body Measurements" action="gym_management_system.action_body_measurements" parent="gym_management_system.gym_menu_root" sequence="7"/>
+
+</odoo>

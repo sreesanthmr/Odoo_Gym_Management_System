@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!-- wizard form view -->
+        <record id="project_project_view_form_simplified_inherit_gym" model="ir.ui.view">
+            <field name="name">project.project.form.simplified.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <label for="is_gym_workout_plan" string="Is Gym Workout Plan?"/>
+                    <field name="is_gym_workout_plan"/>
+                </xpath>
+
+                
+            </field>
+        </record>
+
+
+        <!-- form view -->
+        <record id="project_project_view_form_inherit_gym" model="ir.ui.view">
+            <field name="name">project.project.form.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="workout_plan_description"/>
+                </xpath>
+                <xpath expr="//field[@name='workout_plan_description']" position="after">
+                    <field name="is_gym_workout_plan"/>
+                </xpath>
+                <xpath expr="//sheet/div[1]/button[1]/div/span[1]" position="replace">
+                    <span class="o_stat_text">Workout Schedules</span>
+                </xpath>
+                <xpath expr="//sheet/div[1]/button[1]" position="attributes">
+                    <attribute name='icon'>fa-circle</attribute>
+                </xpath>
+                <xpath expr="//sheet/div[1]/button[1]/div/span[2]" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//header" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='project_update_all_action']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='label_tasks']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='tag_ids']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_start']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                
+            </field>
+        </record>
+
+        <!-- kanban -->
+        <record id="project_project_view_kanban_inherit_gym" model="ir.ui.view">
+            <field name="name">project.project.kanban.inherit.gym</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="on_create"></attribute>
+                    <!-- <attribute name="quick_create_view"></attribute> -->
+                </xpath>
+
+                <xpath expr="//templates/t[2]/footer/div[2]" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//templates/t[2]/footer/div[1]/field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="project_project_view_list_inherit_gym" model="ir.ui.view">
+            <field name="name">project.project.list.inherit</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name='string'>Gym Trainer</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="action_workout_plans" model="ir.actions.act_window">
+            <field name="name">Workout Plans</field>
+            <field name="res_model">project.project</field>
+            <field name="domain">[('is_gym_workout_plan','=',True)]</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No workout plans found. Let's create one!
+                </p>
+                <p>
+                    Create workout plans to organize your workout schedules.
+                </p>
+            </field>
+
+        </record>
+
+    </data>
+
+
+</odoo>

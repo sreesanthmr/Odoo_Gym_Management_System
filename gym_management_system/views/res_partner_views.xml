@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <!--form view-->
+        <record id="res_partner_view_form_inherit_gym" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='type']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//sheet/group/group[1]/span" position="inside">
+                    <span>Address</span>					
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='function']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='mobile']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='title']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+                <xpath expr="//notebook" position="attributes">
+                    <attribute name="invisible">1</attribute>					
+                </xpath>
+
+
+                <xpath expr="//field[@name='vat']" position="before">
+                    <field name="is_gym_member"/>
+                </xpath>
+                <!-- <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="height"/>
+                </xpath>
+                <xpath expr="//field[@name='height']" position="after">
+                    <field name="weight"/>
+                </xpath>
+                <xpath expr="//field[@name='weight']" position="after">
+                    <field name="bmi"/>
+                </xpath> -->
+                <xpath expr="//notebook" position="after">
+                    <notebook>
+                        <page string="Body Measurements">
+                            <field name="body_measurements_line_ids">
+                                <list>
+                                    <field name="date" />
+                                    <field name="chest" />
+                                    <field name="right_arm" />
+                                    <field name="left_arm" />
+                                    <field name="hip" />
+                                    <field name="right_thigh" />
+                                    <field name="left_thigh" />
+                                    <field name="right_calf" />
+                                    <field name="left_calf" />
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+
+                <xpath expr="//sheet/div[1]" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_get_membership" type="object" class="oe_stat_button" icon="fa-id-card" invisible="id == False">
+                            <field name="membership_count" widget="statinfo" string="Membership"/>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="change_is_gym_member" model="ir.actions.server">
+            <field name="name">Change to false</field>
+            <field name="model_id" ref="model_res_partner" />
+            <field name="binding_model_id" ref="model_res_partner" />
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                	action = records.change_is_gym_member()
+            </field>
+        </record>
+
+        <record id="base.action_partner_form" model="ir.actions.act_window">
+            <field name="name">Gym Members</field>
+            <field name="domain">[('is_gym_member','=',True)]</field>
+        </record>
+
+    </data>
+
+
+</odoo>
