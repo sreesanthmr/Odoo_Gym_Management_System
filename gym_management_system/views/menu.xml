@@ -4,7 +4,7 @@
     <menuitem id="gym_menu_root" name="Gym" sequence="1" />
 
     <menuitem id="menu_members" name="Members" action="base.action_partner_form" parent="gym_management_system.gym_menu_root" sequence="1"/>
-    <menuitem id="menu_trainers" name="Trainers" action="hr.open_view_employee_list" parent="gym_management_system.gym_menu_root" sequence="2" groups='gym_management_system.group_gym_trainer,gym_management_system.group_gym_manager' />
+    <menuitem id="menu_trainers" name="Trainers" action="hr.open_view_employee_list" parent="gym_management_system.gym_menu_root" sequence="2" />
 
     <menuitem id="membership_menu_root" name="Membership" parent="gym_management_system.gym_menu_root" sequence="3"/>
     <menuitem id="menu_memberships" name="Membership" action="gym_management_system.action_gym_membership" parent="membership_menu_root" sequence="1"/>
